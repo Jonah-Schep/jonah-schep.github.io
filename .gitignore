@@ -1,0 +1,9 @@
+.DS_Store
+.claude/
+
+# Source files. Only the prepared copies in assets/docs are published.
+/*.pptx
+/*.docx
+/*.rtf
+/design-doc-fixes.md
+/Schepers_Jonah_OpenLate_business_understanding.pdf

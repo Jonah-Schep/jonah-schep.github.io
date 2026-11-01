@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jonah Schepers | Data Science Portfolio</title>
+  <meta name="description" content="Data science coursework and projects by Jonah Schepers, M.S. Data Science student at Virginia Tech.">
+  <meta property="og:title" content="Jonah Schepers | Data Science Portfolio">
+  <meta property="og:description" content="Case studies in AI evaluation, RAG, explainable fraud detection, and threat classification.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%23861F41'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' fill='white' text-anchor='middle'%3EJS%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <a class="skip" href="#work">Skip to projects</a>
+
+  <header class="masthead">
+    <div class="wrap masthead-row">
+      <a class="wordmark" href="#top">Jonah Schepers</a>
+      <nav aria-label="Primary">
+        <a href="#work">Projects</a>
+        <a href="#background">Background</a>
+        <a href="assets/docs/jonah-schepers-resume.pdf">Résumé</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero wrap">
+      <p class="eyebrow">M.S. Data Science, Virginia Tech (4+1) · Expected May 2027</p>
+      <h1>I build AI evaluation systems, then explain the results to the people who act on them.</h1>
+      <div class="hero-foot">
+        <p class="lede">This is a selection of my coursework and capstone projects. Each one shows the problem, what I built, what the evidence supports, and where it falls short. I'm available starting Summer 2027.</p>
+        <ul class="contact">
+          <li><a href="mailto:jschep2020@gmail.com">jschep2020@gmail.com</a></li>
+          <li><a href="https://linkedin.com/in/Jonah-schep">LinkedIn</a></li>
+          <li><a href="https://github.com/Jonah-Schep">GitHub</a></li>
+          <li><a href="assets/docs/jonah-schepers-resume.pdf">Résumé (PDF)</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="work" class="wrap" aria-labelledby="work-title">
+      <div class="section-head">
+        <h2 id="work-title">Selected projects</h2>
+        <p>Five projects, 2025 to 2026</p>
+      </div>
+
+      <article class="case">
+        <div class="case-meta">
+          <span class="case-no">01</span>
+          <p>CMDA Capstone<br>Spring 2026</p>
+          <p class="partner">Industry partner: Ozmo</p>
+          <div class="share" role="img" aria-label="Contribution: nearly all of the project">
+            <span class="share-label">My contribution</span>
+            <span class="share-bar"><span style="width:95%"></span></span>
+            <span class="share-value">Nearly all of the project</span>
+          </div>
+        </div>
+        <div class="case-body">
+          <h3>Giving every support agent the best agent's playbook</h3>
+          <p class="problem">Telecom support transcripts show what successful agents do, but only as unstructured conversation. I built a Databricks framework that turns those transcripts into live suggestions, with the agent making the final call.</p>
+          <ul class="points">
+            <li>Built a nine-stage pipeline on Databricks and Delta Lake that masks eight PII types with <code>ai_mask()</code> before any LLM call.</li>
+            <li>Clustered 9,604 agent utterances into 18 reusable actions with TF-IDF and KMeans, choosing k by silhouette and elbow, and labeled only the clusters with an LLM to control cost.</li>
+            <li>Served playbooks through Mosaic Vector Search. Agents see three suggestions, and overrides are logged as training signal.</li>
+            <li>Tested BERTopic for category discovery and dropped it after 7 of 15 categories scored F1 = 0.</li>
+          </ul>
+          <dl class="figures">
+            <div><dt>18</dt><dd>reusable agent actions</dd></div>
+            <div><dt>9,531</dt><dd>beats indexed for retrieval</dd></div>
+            <div><dt>&lt;1 s</dt><dd>retrieval time</dd></div>
+            <div><dt>100</dt><dd>held-out calls for evaluation</dd></div>
+          </dl>
+          <p class="caveat"><strong>Limitation:</strong> the transcripts are AI-generated and skew positive, so this validates the method. The numbers need a re-run on production data.</p>
+          <div class="case-foot">
+            <p class="stack">Databricks · Delta Lake · Mosaic Vector Search · Llama · RAG · Python · SQL</p>
+            <a class="doc" href="assets/docs/ozmo-agent-assist.pdf">Stakeholder deck <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="case">
+        <div class="case-meta">
+          <span class="case-no">02</span>
+          <p>Communications in Team-Based Data Science<br>Spring 2026</p>
+          <p class="partner">Fictional company: FinTrust</p>
+        </div>
+        <div class="case-body">
+          <h3>Explaining one fraud model to an executive and a regulator</h3>
+          <p class="problem">A fraud model only gets used if the people accountable for it can trust it. I presented the same Isolation Forest and SHAP system to two simulated audiences with very different questions.</p>
+          <ul class="points">
+            <li><strong>SVP of Finance:</strong> answers the concern about declining valid transactions, using plain language, a bank-teller analogy, and one worked example.</li>
+            <li><strong>FTC regulator:</strong> traces two flagged transactions feature by feature, then covers FCRA and ECOA compliance, human oversight, and model limitations.</li>
+          </ul>
+          <dl class="figures">
+            <div><dt>2</dt><dd>audiences, one model</dd></div>
+            <div><dt>20</dt><dd>behavioral features</dd></div>
+            <div><dt>10,000</dt><dd>training transactions</dd></div>
+            <div><dt>200</dt><dd>Isolation Forest estimators</dd></div>
+          </dl>
+          <p class="caveat"><strong>Context:</strong> this was a course exercise. FinTrust and the business outcomes in the decks are part of the fictional scenario.</p>
+          <div class="case-foot">
+            <p class="stack">Isolation Forest · SHAP · Explainable AI · Stakeholder Communication</p>
+            <div class="docs">
+              <a class="doc" href="assets/docs/fintrust-executive-briefing.pdf">Executive briefing <span aria-hidden="true">↗</span></a>
+              <a class="doc" href="assets/docs/fintrust-regulator-briefing.pdf">Regulator briefing <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="case">
+        <div class="case-meta">
+          <span class="case-no">03</span>
+          <p>Data Science in Business<br>Fall 2025</p>
+          <p class="partner">Fictional company: CyberGuard</p>
+          <div class="share" role="img" aria-label="Contribution: about 50 percent, team of two">
+            <span class="share-label">My contribution</span>
+            <span class="share-bar"><span style="width:50%"></span></span>
+            <span class="share-value">About 50%, with Rowan Muhoberac</span>
+          </div>
+        </div>
+        <div class="case-body">
+          <h3>Detecting rare network attacks and pricing the deployment</h3>
+          <p class="problem">Every attack class sat below 0.4% prevalence, which makes accuracy meaningless. We built four specialized classifiers, scored them on precision and recall, and turned the detection gains into a business case.</p>
+          <ul class="points">
+            <li>Trained XGBoost classifiers for advanced persistent threats, phishing, zero-day exploits, and insider threats across 525,000 connections.</li>
+            <li>Caught every APT, phishing, and zero-day case in evaluation. Insider threats were the hardest class, at 75.61% detection and 0.83 PR-AUC.</li>
+            <li>Built a simulator and cost-benefit model for a $1.2M project, with break-even in about one year.</li>
+          </ul>
+          <dl class="figures">
+            <div><dt>525K</dt><dd>connections evaluated</dd></div>
+            <div><dt>0.83</dt><dd>PR-AUC on insider threats</dd></div>
+            <div><dt>&lt;2%</dt><dd>false-positive goal met on all four</dd></div>
+            <div><dt>$3.15M</dt><dd>3-year NPV at 8%</dd></div>
+          </dl>
+          <p class="caveat"><strong>Limitation:</strong> these are offline and simulated results. An A/B test against the current service would be needed to confirm the real gains.</p>
+          <div class="case-foot">
+            <p class="stack">Python · XGBoost · PR-AUC · Class Imbalance · Cost-Benefit Modeling</p>
+            <a class="doc" href="assets/docs/cyberguard-network-intrusion.pdf">Presentation <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="case">
+        <div class="case-meta">
+          <span class="case-no">04</span>
+          <p>Communications in Team-Based Data Science<br>Spring 2026</p>
+          <p class="partner">Renamed company, based on a real one</p>
+        </div>
+        <div class="case-body">
+          <h3>Designing a personalized customer response system</h3>
+          <p class="problem">A CX agency, called Larkfield here, spends too much staff time answering customer tickets. This CRISP-DM design document specifies a system to draft personalized replies and hand harder cases to a human agent.</p>
+          <ul class="points">
+            <li>Specified a Bronze, Silver, and Gold lakehouse on Databricks, with PII masked before any model use.</li>
+            <li>Designed a RAG layer using BGE-M3 embeddings, FAISS search, and an LLM re-ranker, with LLM-as-a-judge evaluation.</li>
+            <li>Planned testing, a four-week pilot, rollback triggers, drift monitoring, and phased production rollout.</li>
+          </ul>
+          <dl class="figures">
+            <div><dt>16</dt><dd>design sections</dd></div>
+            <div><dt>20,000</dt><dd>customers in the planned pilot</dd></div>
+            <div><dt>&lt;10%</dt><dd>target response failure rate</dd></div>
+            <div><dt>&lt;500 ms</dt><dd>target p99 API latency</dd></div>
+          </dl>
+          <p class="caveat"><strong>Context:</strong> this is a design specification, and the system was not built. The company and all people are renamed. All figures are design targets.</p>
+          <div class="case-foot">
+            <p class="stack">CRISP-DM · Databricks · RAG · LLM-as-a-Judge · MLflow · Data Governance</p>
+            <a class="doc" href="assets/docs/larkfield-design-document.pdf">Design document <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="case">
+        <div class="case-meta">
+          <span class="case-no">05</span>
+          <p>ASA DataFest<br>2025</p>
+          <p class="partner">Team SleepieR</p>
+          <div class="share" role="img" aria-label="Contribution: about 40 percent, team of three">
+            <span class="share-label">My contribution</span>
+            <span class="share-bar"><span style="width:40%"></span></span>
+            <span class="share-value">About 40%, with Rowan Muhoberac and Quinlan Brennan</span>
+          </div>
+        </div>
+        <div class="case-body">
+          <h3>Choosing where a mid-sized tech company should lease</h3>
+          <p class="problem">In a data competition, we advised a 300-person tech company with a mostly remote workforce on where to lease office space, balancing talent, space, and cost.</p>
+          <ul class="points">
+            <li>Compared lease records by property class and location type, then narrowed by region on price, availability, and competitor presence.</li>
+            <li>Recommended Class A suburban space in Atlanta, sized for about 90 in-person employees.</li>
+          </ul>
+          <dl class="figures">
+            <div><dt>194,676</dt><dd>leases summarized</dd></div>
+            <div><dt>$30.34</dt><dd>average suburban rent</dd></div>
+            <div><dt>$51.24</dt><dd>average downtown (CBD) rent</dd></div>
+            <div><dt>~90</dt><dd>in-person employees planned for</dd></div>
+          </dl>
+          <p class="caveat"><strong>Limitation:</strong> the analysis leaves out local taxes, cost of living, and crime rates, and rents are not adjusted for inflation.</p>
+          <div class="case-foot">
+            <p class="stack">Exploratory Data Analysis · Data Visualization · Market Analysis</p>
+            <a class="doc" href="assets/docs/asa-datafest-2025.pdf">Presentation <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section id="background" class="background" aria-labelledby="background-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="background-title">Background</h2>
+        </div>
+        <div class="bg-grid">
+          <div>
+            <h3>Experience</h3>
+            <ul class="timeline">
+              <li><strong>Graduate Assistant</strong>, Analytics &amp; AI, Virginia Tech<span>Aug 2026 to present</span></li>
+              <li><strong>Data Science Intern</strong>, Analytics &amp; AI, Virginia Tech<span>May to Aug 2026</span></li>
+              <li><strong>AI Trainer, Data Annotator</strong>, Handshake AI<span>Nov 2025 to present</span></li>
+              <li><strong>Research Assistant</strong>, Department of Physics, Virginia Tech<span>Nov 2023 to Dec 2025</span></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Education</h3>
+            <ul class="timeline">
+              <li><strong>M.S. Data Science</strong> (4+1 Program), Virginia Tech<span>Expected May 2027</span></li>
+              <li><strong>B.S. Computational Modeling and Data Analytics</strong>, Virginia Tech<span>2023 to Fall 2026</span></li>
+            </ul>
+            <h3 class="sub">Awards</h3>
+            <ul class="timeline">
+              <li><strong>2nd Place</strong>, CMDA Data Competition<span>2024</span></li>
+              <li><strong>5th Place</strong>, ASA DataFest Competition<span>2024</span></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Skills</h3>
+            <dl class="skills">
+              <dt>Languages</dt><dd>Python, R, SQL, C, Java, MATLAB, CUDA, Bash, LaTeX</dd>
+              <dt>ML &amp; data science</dt><dd>LLM-as-judge evaluation, model benchmarking, RAG, agentic AI, NLP, prompt engineering, Bayesian and regression methods, ARIMA, CRISP-DM</dd>
+              <dt>Tools</dt><dd>Git, Linux, Databricks, AWS Bedrock, Strands Agents SDK, MCP, Pydantic, MPI, OpenMP</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap footer">
+    <p>Jonah Schepers</p>
+    <p><a href="mailto:jschep2020@gmail.com">jschep2020@gmail.com</a></p>
+  </footer>
+</body>
+</html>
